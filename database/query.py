@@ -24,3 +24,26 @@ def create_contact(session: Session, contact: schemas.ContactBase):
     session.commit()
     session.refresh(db_contact)
     return db_contact
+
+
+def get_call_log(session: Session, call_log_id: int):
+    return session.query(db.CallLog).filter(db.CallLog.id == call_log_id).first()
+
+
+def get_call_log_by_contact(session: Session, contact_id: int):
+    return session.query(db.CallLog).filter(db.CallLog.contact == contact_id).first()
+
+
+def get_all_call_logs(session: Session):
+    return session.query(db.CallLog).filter().all()
+    
+
+def create_call_log(session: Session, call_log: schemas.CallLogBase):
+    db_call_log = db.Contact(type_cal=call_log.type_call, 
+                            time_session=call_log.time_session,
+                            datetime_call=call_log.datetime_call,
+                            contact=call_log.contact)
+    session.add(db_call_log)
+    session.commit()
+    session.refresh(db_call_log)
+    return db_call_log
