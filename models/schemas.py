@@ -36,4 +36,6 @@ class CallLogBase(BaseModel):
     datetime_call: datetime
     contact: ContactBase
 
+    class Config:
+        orm_mode = True
 
