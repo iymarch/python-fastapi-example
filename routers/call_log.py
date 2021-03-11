@@ -1,7 +1,9 @@
-from fastapi import APIRouter
+from typing import List
+
+from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from models.schemas import CallLogBase
+from models.schemas import CallLogBase, ContactBase
 from database import SessionLocal
 from database import query
 from dependencies.db import get_db
